@@ -13,7 +13,8 @@
       <div class="verzender-cell" style="padding: 10px 20px 10px 20px; font-size: 1em; box-sizing: border-box;">
         Met vriendelijke groet,<br /><br />
         <strong>(Naam verzender)</strong><br />
-        (functie)<br /><br /><br />
+        (functie)<br />
+        <br /><br /><br />
       </div>
 
       <div class="logo-cell"
@@ -34,9 +35,10 @@
 
     <div class="informatie-container"
       style="position: relative; width: 100%; height: 168px; box-sizing: border-box;">
-      <!-- Replace background div with an <img> for better email support -->
-      <img class="background-img" data-src="http://docker07.ap.altop:5194/images/AdresVlak.png"
-        style="position: absolute; top: 0; right: 0; width: 100%; height: 100%; object-fit: contain; z-index: 1; pointer-events: none;" />
+      <div class="background-img"
+        data-src="http://docker07.ap.altop:5194/images/AdresVlak.png"
+        style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; background-image: url(''); background-size: auto; background-color: transparent; background-position: right top; background-repeat: no-repeat; z-index: 1; pointer-events: none;">
+      </div>
       <div class="informatie-block" style="font-size: 1em; position: relative; z-index: 2; color: white;">
         Stirlingstraat 4<br />
         7037 DG Beek (Montferland)<br />
@@ -48,31 +50,39 @@
 
   <script>
     async function toBase64(url) {
-      try {
-        const res = await fetch(url, { mode: 'cors' });
-        const blob = await res.blob();
-        return new Promise(resolve => {
-          const reader = new FileReader();
-          reader.onloadend = () => resolve(reader.result);
-          reader.readAsDataURL(blob);
-        });
-      } catch (e) {
-        console.error("Failed to fetch:", url, e);
-        return url; // fallback to original URL
-      }
+      const res = await fetch(url);
+      const blob = await res.blob();
+      return new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(blob);
+      });
     }
 
     async function convertImages() {
-      // Convert all <img> tags with class "base-img" or background-img
-      const imgs = document.querySelectorAll('.base-img, .background-img');
+      // Convert all <img> tags with class "base-img"
+      const imgs = document.querySelectorAll('.base-img');
       for (let img of imgs) {
         const src = img.dataset.src;
-        if (!src) continue;
         try {
           const base64 = await toBase64(src);
           img.src = base64;
         } catch (e) {
           console.error("Failed to convert", src, e);
+        }
+      }
+
+      // Convert all background images with data-src
+      const bgs = document.querySelectorAll('[data-src]');
+      for (let bg of bgs) {
+        if (bg.tagName === "DIV") {
+          const src = bg.dataset.src;
+          try {
+            const base64 = await toBase64(src);
+            bg.style.backgroundImage = `url('${base64}')`;
+          } catch (e) {
+            console.error("Failed to convert background", src, e);
+          }
         }
       }
     }
