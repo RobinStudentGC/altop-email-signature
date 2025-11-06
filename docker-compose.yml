@@ -6,6 +6,6 @@ services:
       target: prod
     container_name: altop-email-signature
     ports:
-      - "5163:3000"
+      - "5194:3000"
     environment:
       - NODE_ENV=production
