@@ -18,13 +18,13 @@
 
       <div class="logo-cell"
         style="width: 100%; max-width: 200px; display: flex; align-items: center; justify-content: center; padding: 0; box-sizing: border-box;">
-        <img src="src/lib/assets/images/Logo%20AltopT.png" alt="Altop Logo" class="logo-img"
+        <img src="/images/Logo%20AltopT.png" alt="Altop Logo" class="logo-img"
           style="max-width: 200px; width: 100%; height: auto; display: block; margin: auto; object-fit: contain; padding-right: 10px;" />
       </div>
     </div>
 
     <div class="balk" style="width: 100%;">
-      <img class="balk-img" src="src/lib/assets/images/Balk.png" alt=""
+      <img class="balk-img" src="/images/Balk.png" alt=""
         style="width: 100%; display: block; margin: auto; height: auto;" />
     </div>
 
@@ -33,7 +33,7 @@
     </div>
 
     <div class="informatie-container" style="position: relative; width: 100%; height: 168px; box-sizing: border-box;">
-  <div class="background-img" style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; background-image: url('src/lib/assets/images/AdresVlak.png'); background-size: auto; background-color: transparent; background-position: right top; background-repeat: no-repeat; z-index: 1; pointer-events: none;"></div>
+  <div class="background-img" style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; background-image: url('/images/AdresVlak.png'); background-size: auto; background-color: transparent; background-position: right top; background-repeat: no-repeat; z-index: 1; pointer-events: none;"></div>
         <div class="informatie-block" style="font-size: 1em; position: relative; z-index: 2; color: white;">
         Stirlingstraat 4<br />
         7037 DG Beek (Montferland)<br />
