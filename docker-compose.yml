@@ -4,7 +4,7 @@ services:
     build:
       context: .
       target: prod
-    container_name: health-dash
+    container_name: altop-email-signature
     ports:
       - "5163:3000"
     environment:
