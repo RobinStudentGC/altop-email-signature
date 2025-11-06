@@ -20,9 +20,22 @@
         style="padding: 10px 20px; max-width: 300px; display: inline-block; width: auto; overflow-x: scroll; z-index: 3; font-size: 1em; box-sizing: border-box; vertical-align: top;">
         Met vriendelijke groet,<br /><br />
         <span style="display: flex; gap: 10px;">
-          <strong>(Naam afzender)</strong><a href="" class="linkedin-href"><img src="https://robinstudentgc.github.io/altop-email-signature/images/LinkedIn AltopT.png" class="linkedin-img" alt=""></a><br /> 
-        </span>
-        (functie)<br /><br />
+          <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="text-align: left; vertical-align: middle; display: inline-block; width: auto;">
+                <strong>(Naam afzender)</strong>
+              </td>
+              <td style="text-align: left; vertical-align: middle; padding-left: 10px;">
+                <a href="" class="linkedin-href"><img src="https://robinstudentgc.github.io/altop-email-signature/images/LinkedIn AltopT.png" class="linkedin-img" alt="" style="margin: 0; padding: 0; display: inline-block; vertical-align: middle;" /></a>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align: left; padding-top: 5px;">
+                (functie)
+              </td>
+            </tr>
+          </table>
+        <br />
       </td>
       <td style="width: 200px; height: auto; padding: 8px 8px 8px 0; box-sizing: border-box; vertical-align: top;"
         align="center">
@@ -129,11 +142,17 @@
       var nameElem = document.querySelector('.emailTable strong');
       if (nameElem) nameElem.textContent = name || '(Naam afzender)';
 
-      // Update function
-      var funcElem = nameElem ? nameElem.nextSibling : null;
-      if (funcElem && funcElem.nodeType === 3) {
-        // Text node after <strong>
-        funcElem.textContent = '\n' + (func || '(functie)') + '\n\n\n';
+      // Update function (find the cell under name/linkedin row)
+      var funcCell = null;
+      var tables = document.querySelectorAll('.emailTable table');
+      tables.forEach(function(tbl) {
+        var rows = tbl.rows;
+        if (rows.length > 1 && rows[1].cells.length === 1 && rows[1].cells[0].innerHTML.includes('(functie)')) {
+          funcCell = rows[1].cells[0];
+        }
+      });
+      if (funcCell) {
+        funcCell.textContent = func || '(functie)';
       } else {
         // Fallback: find (functie) text
         var allTds = document.querySelectorAll('.emailTable td');
