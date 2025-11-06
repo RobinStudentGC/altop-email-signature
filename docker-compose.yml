@@ -1,0 +1,11 @@
+# Docker Compose v2+ – 'version' key is deprecated/ignored, so omitted intentionally
+services:
+  dip-config-dash:
+    build:
+      context: .
+      target: prod
+    container_name: health-dash
+    ports:
+      - "5163:3000"
+    environment:
+      - NODE_ENV=production
