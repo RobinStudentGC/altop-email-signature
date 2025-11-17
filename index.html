@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Email Signature</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+    integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -19,7 +20,7 @@
       <td
         style="padding: 10px 20px; max-width: 300px; display: inline-block; width: auto; z-index: 3; font-size: 1em; box-sizing: border-box; vertical-align: top;">
         <span class="tr-groet">Met vriendelijke groet,</span><br /><br />
-        <span style="display: flex; gap: 10px;">
+        <div style="display: flex; gap: 10px;">
           <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse;">
             <tr>
               <td style="text-align: left; vertical-align: middle; display: inline-block; width: auto;">
@@ -38,7 +39,8 @@
               </td>
             </tr>
           </table>
-          <br />
+        </div>
+        <br />
       </td>
       <td style="width: 200px; height: auto; padding: 8px 8px 8px 0; box-sizing: border-box; vertical-align: top;"
         align="center">
@@ -61,8 +63,8 @@
     <tr>
       <td colspan="2" style="padding: 10px 20px; font-size: 1em; box-sizing: border-box;"
         class="afzender-telefoonnummer">
-        <a href="tel:+31316820020" style="color: black;text-decoration: none;" class="tr-phone">(telefoonnummer
-          afzender)</a>
+        <a href="tel:+31316820020" class="tr-phone" style="text-decoration:none;">+31 (0)316 82 00 20</a>
+
       </td>
     </tr>
 
@@ -79,8 +81,10 @@
                 Stirlingstraat 4<br />
                 7037 DG Beek (Montferland)
               </a><br />
-              <a href="tel:+31316820020" style="color: #a5a5a5; text-decoration: none; min-width: 300px;"
-                class="tr-address2">+31 (0)316 82 00 20</a><br />
+                <a href="tel:+31316820020" class="tr-address2" style="color: white; text-decoration: none;">+31 (0)316 82 00 20</a>
+
+
+              <br />
               <a href="https://www.altoptechnologies.nl" style="color: #4da3ff; text-decoration: underline;"
                 class="tr-address3">www.altoptechnologies.nl</a>
             </td>
@@ -97,6 +101,7 @@
 
   </table>
 
+
   <div class="doNotCopy mt-10">
     <div style="text-align: right; margin: 16px 0 8px 0;">
       <label for="lang-select" style="font-size: 16px; margin-right: 8px;">Taal / Language:</label>
@@ -106,12 +111,15 @@
       </select>
     </div>
     <div class="buttons mb-6 flex justify-center">
-        <div style="display: flex; flex-direction: column; align-items: center;">
-          <button
-            class="copy-btn px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 tr-copy-btn">Kopieer
-            Signature</button>
-    <div id="copy-instructions" style="margin-top: 10px; max-width: 350px; text-align: center; background: #f3f4f6; color: #222; border-radius: 8px; padding: 10px; font-size: 15px; box-shadow: 0 2px 8px #0001;"></div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <button
+          class="copy-btn px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 tr-copy-btn">Kopieer
+          Signature</button>
+        <div id="copy-instructions"
+          style="margin-top: 10px; max-width: 350px; text-align: center; background: #f3f4f6; color: #222; border-radius: 8px; padding: 10px; font-size: 15px; box-shadow: 0 2px 8px #0001;">
         </div>
+        <div id="clickable-note" style="margin-top: 8px; max-width: 480px; text-align: center; color: #4b5563; font-size: 13px; line-height: 1.35;"></div>
+      </div>
     </div>
 
     <div class="data-form max-w-md mx-auto bg-white rounded-xl shadow-lg p-8 space-y-6">
@@ -146,137 +154,151 @@
 
   <script>
 
-  // Fill signature fields on form submit
+    // Fill signature fields on form submit
 
-  // Language translations
-  const translations = {
-    nl: {
-      groet: 'Met vriendelijke groet,',
-      name: '(Naam afzender)',
-      function: '(functie)',
-      phone: '(telefoonnummer afzender)',
-      address1: 'Stirlingstraat 4<br />7037 DG Beek (Montferland)',
-      address2: '+31 (0)316 82 00 20',
-      address3: 'www.altoptechnologies.nl',
-      copyBtn: 'Kopieer Handtekening',
-      form: {
-        name: 'Naam:',
-        function: 'Functie:',
-        phone: 'Telefoonnummer:',
-        linkedin: 'LinkedIn:',
-        submit: 'Verzenden'
+    // Language translations
+    const translations = {
+      nl: {
+        groet: 'Met vriendelijke groet,',
+        name: '(Naam afzender)',
+        function: '(functie)',
+        phone: '(telefoonnummer afzender)',
+        address1: 'Stirlingstraat 4<br />7037 DG Beek (Montferland)',
+        address2: '+31 (0)316 82 00 20',
+        address3: 'www.altoptechnologies.nl',
+        copyBtn: 'Kopieer Handtekening',
+        form: {
+          name: 'Naam:',
+          function: 'Functie:',
+          phone: 'Telefoonnummer:',
+          linkedin: 'LinkedIn:',
+          submit: 'Verzenden'
+        },
+        alert: 'E-mailhandtekening geselecteerd. Druk op Ctrl+C (of Cmd+C) om te kopiëren.'
       },
-      alert: 'E-mailhandtekening geselecteerd. Druk op Ctrl+C (of Cmd+C) om te kopiëren.'
-    },
-    en: {
-      groet: 'Kind regards,',
-      name: '(Sender name)',
-      function: '(function)',
-      phone: '(sender phone number)',
-      address1: 'Stirlingstraat 4<br />7037 DG Beek (Montferland)',
-      address2: '+31 (0)316 82 00 20',
-      address3: 'www.altoptechnologies.nl',
-      copyBtn: 'Copy Signature',
-      form: {
-        name: 'Name:',
-        function: 'Function:',
-        phone: 'Phone Number:',
-        linkedin: 'LinkedIn:',
-        submit: 'Submit'
-      },
-      alert: 'Email signature selected. Press Ctrl+C (or Cmd+C) to copy.'
+      en: {
+        groet: 'Kind regards,',
+        name: '(Sender name)',
+        function: '(function)',
+        phone: '(sender phone number)',
+        address1: 'Stirlingstraat 4<br />7037 DG Beek (Montferland)',
+        address2: '+31 (0)316 82 00 20',
+        address3: 'www.altoptechnologies.nl',
+        copyBtn: 'Copy Signature',
+        form: {
+          name: 'Name:',
+          function: 'Function:',
+          phone: 'Phone Number:',
+          linkedin: 'LinkedIn:',
+          submit: 'Submit'
+        },
+        alert: 'Email signature selected. Press Ctrl+C (or Cmd+C) to copy.'
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = translations[lang];
+      $('.tr-groet').text(t.groet);
+      $('.tr-name').text(t.name);
+      $('.tr-function').text(t.function);
+      $('.tr-phone').text(t.phone);
+      $('.tr-address1').html(t.address1);
+      $('.tr-address2').text(t.address2);
+      $('.tr-address3').text(t.address3);
+      $('.tr-copy-btn').text(t.copyBtn);
+      $('.tr-form-name').text(t.form.name);
+      $('.tr-form-function').text(t.form.function);
+      $('.tr-form-phone').text(t.form.phone);
+      $('.tr-form-linkedin').text(t.form.linkedin);
+      $('.tr-form-submit').val(t.form.submit);
     }
-  };
 
-  function setLanguage(lang) {
-    const t = translations[lang];
-    $('.tr-groet').text(t.groet);
-    $('.tr-name').text(t.name);
-    $('.tr-function').text(t.function);
-    $('.tr-phone').text(t.phone);
-    $('.tr-address1').html(t.address1);
-    $('.tr-address2').text(t.address2);
-    $('.tr-address3').text(t.address3);
-    $('.tr-copy-btn').text(t.copyBtn);
-    $('.tr-form-name').text(t.form.name);
-    $('.tr-form-function').text(t.form.function);
-    $('.tr-form-phone').text(t.form.phone);
-    $('.tr-form-linkedin').text(t.form.linkedin);
-    $('.tr-form-submit').val(t.form.submit);
-  }
-
-  // Restore language from localStorage or default to Dutch
-  var $langSelect = $('#lang-select');
-  var savedLang = localStorage.getItem('signatureLang');
-  if (!savedLang) {
-    $langSelect.val('nl');
-    setLanguage('nl');
-  } else {
-    $langSelect.val(savedLang);
-    setLanguage(savedLang);
-  }
-
-  $langSelect.on('change', function() {
-    setLanguage(this.value);
-    localStorage.setItem('signatureLang', this.value);
-  });
-
-  $('.data-form form').on('submit', function (e) {
-    e.preventDefault();
-    var name = $('#name').val();
-    var func = $('#function').val();
-    var phone = $('#phone').val();
-    var linkedin = $('#linkedin').val();
-
-    // Update name
-    var $nameElem = $('.tr-name');
-    $nameElem.text(name || translations[$langSelect.val()].name);
-
-    // Update function
-    var $funcElem = $('.tr-function');
-    $funcElem.text(func || translations[$langSelect.val()].function);
-
-    // Update phone number only in afzender-telefoonnummer
-    var $phoneTd = $('.tr-phone');
-    $phoneTd.text(phone || translations[$langSelect.val()].phone);
-    $phoneTd.attr('href', phone ? 'tel:' + phone.replace(/[^\d+]/g, '') : '#');
-
-    // Update LinkedIn/website
-    var $linkedinElem = $('.linkedin-href');
-    $linkedinElem.attr('href', linkedin || '');
-  });
-
-  var instructions = {
-    nl: 'Je kunt <b>Ctrl+C</b> gebruiken of <b>rechtermuisklik &gt; Kopiëren</b> om de e-mailhandtekening te kopiëren <b>nadat je de knop hierboven hebt geklikt</b>.',
-    en: 'You can use <b>Ctrl+C</b> or <b>right click &gt; Copy</b> to copy the email signature <b>after you have clicked the button above</b>.'
-  };
-
-  function updateCopyInstructions(lang) {
-    $('#copy-instructions').html(instructions[lang]);
-  }
-
-  // Initial render
-  updateCopyInstructions($langSelect.val());
-
-  // Update instructions on language change
-  $langSelect.on('change', function() {
-    setLanguage(this.value);
-    localStorage.setItem('signatureLang', this.value);
-    updateCopyInstructions(this.value);
-  });
-
-  $('.doNotCopy .buttons button').on('click', function () {
-    var emailTable = $('.emailTable')[0];
-    if (emailTable) {
-      var range = document.createRange();
-      range.selectNode(emailTable);
-      var selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
+    // Restore language from localStorage or default to Dutch
+    var $langSelect = $('#lang-select');
+    var savedLang = localStorage.getItem('signatureLang');
+    // Always default to Dutch unless explicitly set to 'en'
+    if (savedLang === 'en') {
+      $langSelect.val('en');
+      setLanguage('en');
+    } else {
+      $langSelect.val('nl');
+      setLanguage('nl');
+      localStorage.setItem('signatureLang', 'nl');
     }
-  });
 
-  // End of jQuery refactor
+    $langSelect.on('change', function () {
+      setLanguage(this.value);
+      localStorage.setItem('signatureLang', this.value);
+    });
+
+    $('.data-form form').on('submit', function (e) {
+      e.preventDefault();
+      var name = $('#name').val();
+      var func = $('#function').val();
+      var phone = $('#phone').val();
+      var linkedin = $('#linkedin').val();
+
+      // Update name
+      var $nameElem = $('.tr-name');
+      $nameElem.text(name || translations[$langSelect.val()].name);
+
+      // Update function
+      var $funcElem = $('.tr-function');
+      $funcElem.text(func || translations[$langSelect.val()].function);
+
+      // Update phone number only in afzender-telefoonnummer
+      var $phoneTd = $('.tr-phone');
+      $phoneTd.text(phone || translations[$langSelect.val()].phone);
+      $phoneTd.attr('href', phone ? 'tel:' + phone.replace(/[^\d+]/g, '') : '#');
+
+      // Update LinkedIn/website
+      var $linkedinElem = $('.linkedin-href');
+      $linkedinElem.attr('href', linkedin || '');
+    });
+
+    var instructions = {
+      nl: 'Je kunt <b>Ctrl+C</b> gebruiken of <b>rechtermuisklik &gt; Kopiëren</b> om de e-mailhandtekening te kopiëren <b>nadat je de knop hierboven hebt geklikt</b>.',
+      en: 'You can use <b>Ctrl+C</b> or <b>right click &gt; Copy</b> to copy the email signature <b>after you have clicked the button above</b>.'
+    };
+
+    // Extra note about making phone numbers clickable in email clients
+    var clickableNote = {
+      nl: 'Let op: maak telefoonnummers in je e-mailclient (Outlook of Gmail) zelf klikbaar. Selecteer het nummer en voeg een koppeling toe met als adres <code>tel:+31...</code>. Sommige e-mailclients verwijderen <code>tel:</code>-links automatisch.',
+      en: 'Note: make phone numbers clickable yourself in your email client (Outlook or Gmail). Select the number and insert a link with target <code>tel:+31...</code>. Some email clients strip <code>tel:</code> links automatically.'
+    };
+
+    function updateCopyInstructions(lang) {
+      $('#copy-instructions').html(instructions[lang]);
+    }
+
+    function updateClickableNote(lang) {
+      $('#clickable-note').html(clickableNote[lang]);
+    }
+
+    // Initial render
+    updateCopyInstructions($langSelect.val());
+  updateClickableNote($langSelect.val());
+
+    // Update instructions on language change
+    $langSelect.on('change', function () {
+      setLanguage(this.value);
+      localStorage.setItem('signatureLang', this.value);
+      updateCopyInstructions(this.value);
+      updateClickableNote(this.value);
+    });
+
+    $('.doNotCopy .buttons button').on('click', function () {
+      var emailTable = $('.emailTable')[0];
+      if (emailTable) {
+        var range = document.createRange();
+        range.selectNode(emailTable);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    });
+
+    // End of jQuery refactor
   </script>
 </body>
 
