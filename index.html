@@ -32,6 +32,11 @@
             </td>
           </tr>
           <tr>
+            <td style="text-align: left; padding-top: 5px;">
+              <span class="tr-email">(e-mail)</span>
+            </td>
+          </tr>
+          <tr>
             <td style="text-align: left; padding-top: 10px;">
               <a href="" class="linkedin-href"><img
                   src="https://robinstudentgc.github.io/altop-email-signature/images/LinkedIn AltopT.png"
@@ -134,22 +139,27 @@
       <form class="space-y-4">
         <div>
           <label for="name" class="block text-gray-700 font-semibold mb-1 tr-form-name">Naam:</label>
-          <input type="text" id="name" name="name"
+          <input type="text" id="name" name="name" placeholder="(optioneel)"
             class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
         <div>
           <label for="function" class="block text-gray-700 font-semibold mb-1 tr-form-function">Functie:</label>
-          <input type="text" id="function" name="function"
+          <input type="text" id="function" name="function" placeholder="(optioneel)"
+            class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+        <div>
+          <label for="email" class="block text-gray-700 font-semibold mb-1 tr-form-email">E-mail:</label>
+          <input type="email" id="email" name="email" placeholder="(optioneel)"
             class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
         <div>
           <label for="phone" class="block text-gray-700 font-semibold mb-1 tr-form-phone">Telefoonnummer:</label>
-          <input type="text" id="phone" name="phone"
+          <input type="text" id="phone" name="phone" placeholder="(optioneel)"
             class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
         <div>
           <label for="linkedin" class="block text-gray-700 font-semibold mb-1 tr-form-linkedin">LinkedIn:</label>
-          <input type="text" id="linkedin" name="linkedin"
+          <input type="text" id="linkedin" name="linkedin" placeholder="(optioneel)"
             class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
         <div class="flex justify-center">
@@ -206,6 +216,7 @@
       $('.tr-groet').text(t.groet);
       $('.tr-name').text(t.name);
       $('.tr-function').text(t.function);
+      $('.tr-email').text('(e-mail)');
       $('.tr-phone').text(t.phone);
       $('.tr-address1').html(t.address1);
       $('.tr-address2').text(t.address2);
@@ -213,6 +224,7 @@
       $('.tr-copy-btn').text(t.copyBtn);
       $('.tr-form-name').text(t.form.name);
       $('.tr-form-function').text(t.form.function);
+      $('.tr-form-email').text('E-mail:');
       $('.tr-form-phone').text(t.form.phone);
       $('.tr-form-linkedin').text(t.form.linkedin);
       $('.tr-form-submit').val(t.form.submit);
@@ -239,13 +251,15 @@
       e.preventDefault();
       var name = $('#name').val();
       var func = $('#function').val();
+      var email = $('#email').val();
       var phone = $('#phone').val();
       var linkedin = $('#linkedin').val();
 
-      $('.tr-name').text(name || translations[$langSelect.val()].name);
-      $('.tr-function').text(func || translations[$langSelect.val()].function);
-      $('.tr-phone').text(phone || translations[$langSelect.val()].phone);
-      $('.linkedin-href').attr('href', linkedin || '');
+  $('.tr-name').text(name || translations[$langSelect.val()].name);
+  $('.tr-function').text(func || translations[$langSelect.val()].function);
+  $('.tr-email').text(email ? email : '');
+  $('.tr-phone').text(phone || translations[$langSelect.val()].phone);
+  $('.linkedin-href').attr('href', linkedin || '');
     });
 
     // Instructions
