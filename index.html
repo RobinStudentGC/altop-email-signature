@@ -62,9 +62,8 @@
     <!-- Telefoonnummer -->
     <tr>
       <td colspan="2" style="padding: 10px 20px; font-size: 1em; box-sizing: border-box;"
-        class="afzender-telefoonnummer">
-        <a href="tel:+31316820020" class="tr-phone" style="text-decoration:none;">+31 (0)316 82 00 20</a>
-
+        class="afzender-telefoonnummer tr-phone">
+        <span class="tr-phone">+31 (0)316 82 00 20</span>
       </td>
     </tr>
 
@@ -81,9 +80,10 @@
                 Stirlingstraat 4<br />
                 7037 DG Beek (Montferland)
               </a><br />
-                <a href="tel:+31316820020" class="tr-address2" style="color: white; text-decoration: none;">+31 (0)316 82 00 20</a>
-
-
+              <a href="#" onclick="return false;" role="text" tabindex="-1"
+                style="color: white; text-decoration: none; pointer-events: none; cursor: default;"
+                class="tr-address2" data-masked="+31 (0)3&#8203;16&#8203; 82&#8203; 00&#8203; 20"
+                aria-hidden="true">+31 (0)3&#8203;16&#8203; 82&#8203; 00&#8203; 20</a>
               <br />
               <a href="https://www.altoptechnologies.nl" style="color: #4da3ff; text-decoration: underline;"
                 class="tr-address3">www.altoptechnologies.nl</a>
